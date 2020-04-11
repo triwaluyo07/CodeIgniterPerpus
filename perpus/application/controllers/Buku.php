@@ -22,7 +22,6 @@ class Buku extends CI_Controller
         $this->load->view('include/header', $datax);
         $this->load->view('buku/index', $data);
         $this->load->view('include/footer');
-        /*print_r($data) to see the output*/
     }
 
 

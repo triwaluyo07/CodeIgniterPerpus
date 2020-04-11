@@ -10,20 +10,22 @@
         <div class="row">
             <div class="col-12">
                 <div class="col-md-12">
-                    <h1>Product
-                        <small>List</small>
+                    <h1>Daftar
+                        <small>Buku</small>
                         <?php if ($this->session->userdata('level') === '1') : ?>
                             <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Add New</a></div>
                         <?php endif; ?>
                     </h1>
                 </div>
 
-                <table class="table table-striped" id="mydata">
+                <table class="table table-striped table-sm" id="mydata">
                     <thead>
                         <tr>
+                            <th>Kode Buku</th>
                             <th>Nama Buku</th>
-                            <th>Penerbit</th>
                             <th>Pengarang</th>
+                            <th>Penerbit</th>
+                            <th>Status</th>
                             <th style="text-align: right;">Actions</th>
                         </tr>
                     </thead>
@@ -54,12 +56,14 @@
                             <label class="col-md-2 col-form-label">Kode Buku</label>
                             <div class="col-md-10">
                                 <input type="text" name="product_code" id="product_code" class="form-control" value="<?php echo sprintf("%04s", $id_bk) ?>" readonly>
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Nama Buku</label>
                             <div class="col-md-10">
                                 <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Nama Buku">
+
                             </div>
                         </div>
                         <div class="form-group row">
@@ -72,6 +76,15 @@
                             <label class="col-md-2 col-form-label">Penerbit</label>
                             <div class="col-md-10">
                                 <input type="text" name="penerbit" id="penerbit" class="form-control" placeholder="Penerbit">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Status</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="status_bk" id="status_bk">
+                                    <option>Tersedia</option>
+                                    <option>Terpinjam</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -130,6 +143,15 @@
                                 <input type="text" name="penerbit_edit" id="penerbit_edit" class="form-control" placeholder="Penerbit">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">Status</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="status_bk_edit" id="status_bk_edit" >
+                                    <option>Tersedia</option>
+                                    <option>Terpinjam</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -182,10 +204,14 @@
         show_product(); //call function show all product
 
         $('#mydata').DataTable({
-            "columns": [
-
+            "columns": [{
+                    "width": "2%"
+                },
                 {
                     "width": "40%"
+                },
+                {
+                    "width": "20%"
                 },
                 {
                     "width": "20%"
@@ -209,19 +235,19 @@
                     var i;
                     for (i = 0; i < data.length; i++) {
                         html += '<tr>' +
+                            '<td>' + data[i].id_bk + '</td>' +
                             '<td>' + data[i].nama_bk + '</td>' +
                             '<td>' + data[i].pengarang + '</td>' +
                             '<td>' + data[i].penerbit + '</td>' +
+                            '<td>' + data[i].status_bk + '</td>' +
                             '<td style="text-align:right;">' +
-                            '<?php if ($this->session->userdata('level') === '1') : ?> ' +
-                            '<a href="javascript:void(0);" class="btn btn-info btn-sm item_edit" data-product_code="' + data[i].id_bk + '" data-product_name="' + data[i].nama_bk + '" data-pengarang="' + data[i].pengarang + '"data-penerbit="' + data[i].penerbit + '">Edit</a>' + ' ' +
-                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-product_code="' + data[i].id_bk + '">Delete</a>' +
-                            ' <?php else : ?>' +
-                            '<a href="javascript:void(0);" class="btn btn-info btn-sm item_edit" data-product_code="' + data[i].id_bk + '" data-product_name="' + data[i].nama_bk + '" data-pengarang="' + data[i].pengarang + '"data-penerbit="' + data[i].penerbit + '">Edit</a>' + ' ' +
-                            '<?php endif; ?>' +
-                            '</td>' +
+                            '<div class="row">' +
+                            '<div class="col-5"><a href="javascript:void(0);" class="btn btn-info btn-sm item_edit" data-product_code="' + data[i].id_bk + '" data-product_name="' + data[i].nama_bk + '" data-pengarang="' + data[i].pengarang + '"data-penerbit="' + data[i].penerbit + '"data-status_bk="' + data[i].status_bk + '">Edit</a></div>' + ' ' +
+                            '<div class="col-5"><a href="javascript:void(0);" class="btn btn-danger btn-sm item_delete" data-product_code="' + data[i].id_bk + '">Delete</a></div>' +
+                            '</div>'
+                        '</td>' +
 
-                            '</tr>';
+                        '</tr>';
                     }
                     $('#show_data').html(html);
                 }
@@ -236,6 +262,7 @@
             var pengarang = $('#pengarang').val();
             var penerbit = $('#penerbit').val();
             var perolehan = $('#perolehan').val();
+            var status_bk = $('#status_bk').val();
             $.ajax({
                 type: "POST",
                 url: '<?= base_url() ?>buku/save',
@@ -245,7 +272,8 @@
                     product_name: product_name,
                     pengarang: pengarang,
                     penerbit: penerbit,
-                    perolehan: perolehan
+                    perolehan: perolehan,
+                    status_bk: status_bk
                 },
                 success: function(data) {
                     $('[name="product_code"]').val("");
@@ -253,6 +281,7 @@
                     $('[name="pengarang"]').val("");
                     $('[name="penerbit"]').val("");
                     $('[name="perolehan"]').val("");
+                    $('[name="status_bk"]').val("");
                     $('#Modal_Add').modal('hide');
                     location.reload();
 
@@ -267,12 +296,14 @@
             var product_name = $(this).data('product_name');
             var pengarang = $(this).data('pengarang');
             var penerbit = $(this).data('penerbit');
+            var status_bk = $(this).data('status_bk');
 
             $('#Modal_Edit').modal('show');
             $('[name="product_code_edit"]').val(product_code);
             $('[name="product_name_edit"]').val(product_name);
             $('[name="pengarang_edit"]').val(pengarang);
             $('[name="penerbit_edit"]').val(penerbit);
+            $('[name="status_bk_edit"]').val(status_bk);
         });
 
         //update record to database
@@ -281,6 +312,7 @@
             var product_name = $('#product_name_edit').val();
             var pengarang = $('#pengarang_edit').val();
             var penerbit = $('#penerbit_edit').val();
+            var status_bk = $('#status_bk_edit').val();
             $.ajax({
                 type: "POST",
                 url: "<?php echo site_url('buku/update') ?>",
@@ -289,13 +321,15 @@
                     product_code: product_code,
                     product_name: product_name,
                     pengarang: pengarang,
-                    penerbit: penerbit
+                    penerbit: penerbit,
+                    status_bk: status_bk
                 },
                 success: function(data) {
                     $('[name="product_code_edit"]').val("");
                     $('[name="product_name_edit"]').val("");
                     $('[name="pengarang_edit"]').val("");
                     $('[name="penerbit_edit"]').val("");
+                    $('[name="status_bk_edit"]').val("");
                     $('#Modal_Edit').modal('hide');
                     show_product();
                 }
@@ -330,5 +364,6 @@
             return false;
         });
 
+        
     });
 </script>

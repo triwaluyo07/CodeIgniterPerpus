@@ -13,12 +13,9 @@ class Member_model extends CI_Model
         $data = array(
             'id_mb' => $this->input->post('product_code'),
             'nama_mb' => $this->input->post('product_name'),
-            // 'tempat_lahir' => $this->input->post('kelahiran'),
             'temp_lhr' => $this->input->post('kelahiran'),
-            // 'ttl_lahir' => $this->input->post('tanggal'),
             'tgl_lhr' => $this->input->post('tanggal'),
             'telepon' => $this->input->post('telepon'),
-            // 'No_Identitas' => $this->input->post('ktp'),
             'no_id' => $this->input->post('no_idt'),
             'alamat' => $this->input->post('alamat'),
             'jkelamin' => $this->input->post('jkelamin'),
@@ -42,12 +39,6 @@ class Member_model extends CI_Model
         $product_jkelamin = $this->input->post('jkelamin');
         $product_janggota = $this->input->post('janggota');
 
-        // $this->db->set('product_name', $product_name);
-        // $this->db->set('product_num', $product_num);
-        // $this->db->set('product_alamat', $product_alamat);
-        // $this->db->set('product_jkelamin', $product_jkelamin);
-        // $this->db->where('product_code', $product_code);
-
         $this->db->set('nama_mb', $product_name);
         $this->db->set('alamat', $product_alamat);
         $this->db->set('jkelamin', $product_jkelamin);
@@ -61,8 +52,8 @@ class Member_model extends CI_Model
 
     function delete_product()
     {
-        $id_bk = $this->input->post('product_code');
-        $this->db->where('id_mb', $id_bk);
+        $id_mb = $this->input->post('product_code');
+        $this->db->where('id_mb', $id_mb);
         $result = $this->db->delete('pj_member');
         return $result;
     }

@@ -29,18 +29,10 @@ class Login extends CI_Controller
                 'logged_in' => TRUE
             );
             $this->session->set_userdata($sesdata);
-            // access login for admin
-            if ($level === '1') {
+            
                 redirect('home');
 
-                // access login for staff
-            } elseif ($level === '2') {
-                redirect('page/staff');
-
-                // access login for author
-            } else {
-                redirect('page/author');
-            }
+                
         } else {
             echo $this->session->set_flashdata('msg', 'Username or Password is Wrong');
             redirect('login');
@@ -50,6 +42,6 @@ class Login extends CI_Controller
     function logout()
     {
         $this->session->sess_destroy();
-        redirect('home');
+        redirect('login');
     }
 }

@@ -16,6 +16,7 @@ class Buku_model extends CI_Model
             'pengarang' => $this->input->post('pengarang'),
             'penerbit' => $this->input->post('penerbit'),
             'perolehan' => $this->input->post('perolehan'),
+            'status_bk' => $this->input->post('status_bk'),
         );
         $result = $this->db->insert('pj_barang', $data);
         return $result;
@@ -34,10 +35,13 @@ class Buku_model extends CI_Model
         $product_name = $this->input->post('product_name');
         $product_pengarang = $this->input->post('pengarang');
         $product_penerbit = $this->input->post('penerbit');
+        $product_status_bk = $this->input->post('status_bk');
+
 
         $this->db->set('nama_bk', $product_name);
         $this->db->set('pengarang', $product_pengarang);
         $this->db->set('penerbit', $product_penerbit);
+        $this->db->set('status_bk', $product_status_bk);
         $this->db->where('id_bk', $product_code);
         $result = $this->db->update('pj_barang');
         return $result;
