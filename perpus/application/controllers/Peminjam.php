@@ -56,11 +56,6 @@ class Peminjam extends CI_Controller
         echo json_encode($data);
     }
 
-    function delete_status()
-    {
-        $data = $this->Peminjam_model->delete_status();
-        echo json_encode($data);
-    }
     
     function delete()
     {

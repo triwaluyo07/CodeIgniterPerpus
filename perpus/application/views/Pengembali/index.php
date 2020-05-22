@@ -11,7 +11,7 @@
             <div class="col-12">
                 <div class="col-md-12">
                     <h1>List
-                        <small>Peminjam</small>
+                        <small>Pengembalian</small>
                         <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add">
                                 <span class="fa fa-plus"></span> Add New</a></div>
                     </h1>
@@ -46,34 +46,16 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Peminjam</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pengembalian</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-md-2 col-form-label">No Peminjam</label>
+                        <label class="col-md-2 col-form-label">No </label>
                         <div class="col-md-10">
                             <input type="text" name="product_code" id="product_code" list="listmember" class="form-control" value="<?php echo sprintf("%04s", $no_pj) ?>" readonly>
-
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label">ID Member</label>
-                        <div class="col-md-10">
-                            <input type="text" name="id_mb" id="id_mb" list=listmb class="form-control" placeholder="ID Member">
-                            <datalist id=listmb style="display: none">
-                                <?php foreach ($member as $members) { ?>
-                                    <option value="<?php echo $members->id_mb; ?>"> <?php echo $members->id_mb . '-' . $members->nama_mb; ?></option>
-                                <?php } ?>
-                            </datalist>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2 col-form-label">Nama Peminjam</label>
-                        <div class="col-md-10">
-                            <input type="text" name="nama_mb" id="nama_mb" class="form-control" placeholder="Nama Peminjam" readonly>
 
                         </div>
                     </div>
@@ -94,17 +76,31 @@
                             <input type="text" name="nama_bk" id="nama_bk" class="form-control" placeholder="Nama Buku yg Dipinjam" readonly>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">ID Member</label>
+                        <div class="col-md-10">
+                            <input type="text" name="id_mb" id="id_mb" list=listmb class="form-control" placeholder="ID Member" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">Nama Peminjam</label>
+                        <div class="col-md-10">
+                            <input type="text" name="nama_mb" id="nama_mb" class="form-control" placeholder="Nama Peminjam" readonly>
+
+                        </div>
+                    </div>
+
 
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Tanggal Pinjam</label>
                         <div class="col-md-10">
-                            <input type="date" name="tgl_pjm" id="tgl_pjm" class="form-control" placeholder="Tanggal Pinjam">
+                            <input type="date" name="tgl_pjm" id="tgl_pjm" class="form-control" placeholder="Tanggal Pinjam" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Tanggal Kembali</label>
                         <div class="col-md-10">
-                            <input type="date" name="tgl_kmb" id="tgl_kmb" class="form-control" placeholder="Tanggal Kembali">
+                            <input type="date" name="tgl_kmb" id="tgl_kmb" class="form-control" placeholder="Tanggal Kembali" readonly>
                         </div>
                     </div>
                 </div>
@@ -140,37 +136,37 @@
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">ID Member</label>
                         <div class="col-md-10">
-                            <input type="text" name="id_mb_edit" id="id_mb_edit" class="form-control" placeholder="ID Member">
+                            <input type="text" name="id_mb_edit" id="id_mb_edit" class="form-control" placeholder="ID Member" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Nama Peminjam</label>
                         <div class="col-md-10">
-                            <input type="text" name="peminjam_edit" id="peminjam_edit" class="form-control" placeholder="Nama Peminjam">
+                            <input type="text" name="peminjam_edit" id="peminjam_edit" class="form-control" placeholder="Nama Peminjam" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">ID Buku</label>
                         <div class="col-md-10">
-                            <input type="text" name="id_bk_edit" id="id_bk_edit" class="form-control" placeholder="ID Buku">
+                            <input type="text" name="id_bk_edit" id="id_bk_edit" class="form-control" placeholder="ID Buku" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Nama Buku</label>
                         <div class="col-md-10">
-                            <input type="text" name="nama_buku_edit" id="nama_buku_edit" class="form-control" placeholder="Nama Buku yg Dipinjam">
+                            <input type="text" name="nama_buku_edit" id="nama_buku_edit" class="form-control" placeholder="Nama Buku yg Dipinjam" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Tanggal Pinjam</label>
                         <div class="col-md-10">
-                            <input type="date" name="tgl_pjm_edit" id="tgl_pjm_edit" class="form-control" placeholder="Tanggal Pinjam">
+                            <input type="date" name="tgl_pjm_edit" id="tgl_pjm_edit" class="form-control" placeholder="Tanggal Pinjam" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Tanggal Kembali</label>
                         <div class="col-md-10">
-                            <input type="date" name="tgl_kmb_edit" id="tgl_kmb_edit" class="form-control" placeholder="Tanggal Kembali">
+                            <input type="date" name="tgl_kmb_edit" id="tgl_kmb_edit" class="form-control" placeholder="Tanggal Kembali" readonly>
                         </div>
                     </div>
 
@@ -328,7 +324,7 @@
         function show_product() {
             $.ajax({
                 type: 'ajax',
-                url: '<?= base_url() ?>peminjam/product_data',
+                url: '<?= base_url() ?>pengembali/product_data',
                 async: false,
                 dataType: 'json',
                 success: function(data) {
@@ -337,22 +333,15 @@
                     for (i = 0; i < data.length; i++) {
                         html += '<tr>' +
                             '<td>' + data[i].no_pj + '</a></td>' +
-                            '<td> <a href="javascript:void(0);" class="item_detail" data-product_code="' + data[i].id_mb +
-                            '"data-product_name="' + data[i].nama_mb + '" data-alamat="' + data[i].alamat +
-                            '"data-jkelamin="' + data[i].jkelamin + '"data-statmb="' + data[i].stat_mb +
-                            '"data-temp_lhr="' + data[i].temp_lhr + '"data-tgl_lhr="' + data[i].tgl_lhr +
-                            '"data-janggota="' + data[i].janggota + '"data-telepon="' + data[i].telepon +
-                            '"data-no_id="' + data[i].no_id + '">' + data[i].id_mb + '</td>' +
+                            '<td>' + data[i].id_mb + '</td>' +
                             '<td>' + data[i].nama_mb + '</td>' +
                             '<td>' + data[i].id_bk + '</td>' +
                             '<td>' + data[i].nama_bk + '</td>' +
                             '<td>' + data[i].tgl_pjm + '</td>' +
                             '<td>' + data[i].tgl_kmb + '</td>' +
                             '<td style="text-align:right;">' +
-                            '<div class="row">' +
-                            '<div class="col-5"><a href="javascript:void(0);" i class="btn btn-info btn-sm item_edit" data-product_code="' + data[i].no_pj + '" data-id_mb="' + data[i].id_mb + '" data-peminjam="' + data[i].nama_mb + '"data-id_bk="' + data[i].id_bk + '"data-nama_buku="' + data[i].nama_bk + '"data-tgl_pjm="' + data[i].tgl_pjm + '"data-tgl_kmb="' + data[i].tgl_kmb + '">Edit</a></div>' + ' ' +
-                            '<div class="col-5"><a href="javascript:void(0);" i class="btn btn-danger btn-sm item_delete" data-product_code="' + data[i].no_pj + '">Delete</a></div>' +
-                            '</div></td>' +
+                            '<a href="javascript:void(0);" i class="btn btn-info btn-sm item_edit" data-product_code="' + data[i].no_pj + '" data-id_mb="' + data[i].id_mb + '" data-nama_mb="' + data[i].nama_mb + '"data-id_bk="' + data[i].id_bk + '"data-nama_bk="' + data[i].nama_bk + '"data-tgl_pjm="' + data[i].tgl_pjm + '"data-tgl_kmb="' + data[i].tgl_kmb + '">View</a>' + ' ' +
+                            '</td>' +
 
                             '</tr>';
                     }
@@ -404,7 +393,7 @@
 
             $.ajax({
                 type: "POST",
-                url: '<?= base_url() ?>Peminjam/save',
+                url: '<?= base_url() ?>Pengembali/save',
                 dataType: 'json',
                 data: {
                     product_code: product_code,
@@ -431,7 +420,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo site_url('peminjam/update_status') ?>",
+                url: "<?php echo site_url('pengembali/update_status') ?>",
                 dataType: "JSON",
                 data: {
                     id_bk: id_bk
@@ -447,117 +436,29 @@
         $('#show_data').on('click', '.item_edit', function() {
             var product_code = $(this).data('product_code');
             var id_mb = $(this).data('id_mb');
-            var peminjam = $(this).data('peminjam');
+            var nama_mb = $(this).data('nama_mb');
             var id_bk = $(this).data('id_bk');
-            var nama_buku = $(this).data('nama_buku');
+            var nama_bk = $(this).data('nama_bk');
             var tgl_pjm = $(this).data('tgl_pjm');
             var tgl_kmb = $(this).data('tgl_kmb');
 
             $('#Modal_Edit').modal('show');
             $('[name="product_code_edit"]').val(product_code);
             $('[name="id_mb_edit"]').val(id_mb);
-            $('[name="peminjam_edit"]').val(peminjam);
+            $('[name="peminjam_edit"]').val(nama_mb);
             $('[name="id_bk_edit"]').val(id_bk);
-            $('[name="nama_buku_edit"]').val(nama_buku);
+            $('[name="nama_buku_edit"]').val(nama_bk);
             $('[name="tgl_pjm_edit"]').val(tgl_pjm);
             $('[name="tgl_kmb_edit"]').val(tgl_kmb);
         });
 
-        //update record to database
-        $('#btn_update').on('click', function() {
-            var product_code = $('#product_code_edit').val();
-            var id_mb = $('#id_mb_edit').val();
-            var peminjam = $('#peminjam_edit').val();
-            var id_bk = $('#id_bk_edit').val();
-            var nama_buku = $('#nama_buku_edit').val();
-            var tgl_pjm = $('#tgl_pjm_edit').val();
-            var tgl_kmb = $('#tgl_kmb_edit').val();
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('peminjam/update') ?>",
-                dataType: "JSON",
-                data: {
-                    product_code: product_code,
-                    id_mb: id_mb,
-                    peminjam: peminjam,
-                    id_bk: id_bk,
-                    nama_buku: nama_buku,
-                    tgl_pjm: tgl_pjm,
-                    tgl_kmb: tgl_kmb
-                },
-                success: function(data) {
-                    $('[name="product_code_edit"]').val("");
-                    $('[name="id_mb_edit"]').val("");
-                    $('[name="peminjam_edit"]').val("");
-                    $('[name="id_bk_edit"]').val("");
-                    $('[name="nama_buku_edit"]').val("");
-                    $('[name="tgl_pjm_edit"]').val("");
-                    $('[name="tgl_kmb_edit"]').val("");
-                    $('#Modal_Edit').modal('hide');
-                    show_product();
-                }
-            });
-
-            return false;
-
-        });
-
-        //get data for delete record
-        $('#show_data').on('click', '.item_delete', function() {
-            var product_code = $(this).data('product_code');
-
-            $('#Modal_Delete').modal('show');
-            $('[name="product_code_delete"]').val(product_code);
-        });
-
-        //delete record to database
-        $('#btn_delete').on('click', function() {
-            var product_code = $('#product_code_delete').val();
-
-
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('peminjam/delete') ?>",
-                dataType: "JSON",
-                data: {
-                    product_code: product_code
-                },
-                success: function(data) {
-                    $('[name="product_code_delete"]').val("");
-                    $('#Modal_Delete').modal('hide');
-                    location.reload();
-                    
-                }
-            });
-
-            return false;
-        });
-
-        //autocomplete member
-        $('#id_mb').on('change', function() {
-            var member = $('#id_mb').val();
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('peminjam/getmb') ?>",
-                data: {
-                    id_mb: member
-                },
-                success: function(data) {
-                    var hasil = JSON.parse(data);
-                    $.each(hasil, function(key, val) {
-                        document.getElementById('id_mb').value = val.id_mb;
-                        document.getElementById('nama_mb').value = val.nama_mb;
-                    });
-                }
-            });
-        });
 
         //autocomplete buku
         $('#id_bk').on('change', function() {
             var buku = $('#id_bk').val();
             $.ajax({
                 type: "POST",
-                url: "<?php echo site_url('peminjam/getbk') ?>",
+                url: "<?php echo site_url('pengembali/getbk') ?>",
                 data: {
                     id_bk: buku
                 },
@@ -566,14 +467,11 @@
                     $.each(hasil, function(key, val) {
                         document.getElementById('id_bk').value = val.id_bk;
                         document.getElementById('nama_bk').value = val.nama_bk;
+                        document.getElementById('id_mb').value = val.id_mb;
+                        document.getElementById('nama_mb').value = val.nama_mb;
+                        document.getElementById('tgl_pjm').value = val.tgl_pjm;
+                        document.getElementById('tgl_kmb').value = val.tgl_kmb;
 
-                        if (val.status_bk == "Terpinjam") {
-                            alert("Maaf buku ini sudah Terpinjam");
-                            document.getElementById("btn_save").disabled = true;
-
-                        } else {
-                            document.getElementById("btn_save").disabled = false;
-                        }
 
                     });
                 }

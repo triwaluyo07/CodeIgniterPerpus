@@ -146,7 +146,7 @@
                         <div class="form-group row">
                             <label class="col-md-2 col-form-label">Status</label>
                             <div class="col-md-10">
-                                <select class="form-control" name="status_bk_edit" id="status_bk_edit" >
+                                <select class="form-control" name="status_bk_edit" id="status_bk_edit" disabled>
                                     <option>Tersedia</option>
                                     <option>Terpinjam</option>
                                 </select>

@@ -61,6 +61,15 @@
         </li>
     <?php endif; ?>
 
+    <?php if ($this->session->userdata('level') === '1') : ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?php echo site_url('Pengembali') ?>">
+                <i class="fas fa-fw fa-folder text-white"></i>
+                <span>Pengembalian</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

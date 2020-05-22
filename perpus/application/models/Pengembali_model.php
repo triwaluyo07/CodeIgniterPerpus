@@ -1,13 +1,12 @@
 <?php
 
-class Peminjam_model extends CI_model
+class Pengembali_model extends CI_model
 {
     function product_list()
     {
         $hasil = $this->db->select('*');
-        $hasil = $this->db->from('pj_peminjam');
-        $hasil = $this->db->join('pj_barang', 'pj_barang.id_bk=pj_peminjam.id_bk');
-        $hasil = $this->db->join('pj_member', 'pj_member.id_mb=pj_peminjam.id_mb');
+        $hasil = $this->db->from('pj_pengembalian');
+        $hasil = $this->db->join('pj_peminjam', 'pj_peminjam.id_bk=pj_pengembalian.id_bk');
         $hasil = $this->db->get();
         return $hasil->result();
     }
@@ -23,59 +22,39 @@ class Peminjam_model extends CI_model
             'tgl_pjm' => $this->input->post('tgl_pjm'),
             'tgl_kmb' => $this->input->post('tgl_kmb'),
         );
-        $result = $this->db->insert('pj_peminjam', $data);
+        $result = $this->db->insert('pj_pengembalian', $data);
         return $result;
     }
 
     public function datalist($table)
     {
-        $res= $this->db->get($table);
+        $res = $this->db->get($table);
         return $res->result();
     }
-
-    public function cari($table,$data){
-        $query = $this->db->get_where($table,$data);
+    public function cari($table, $data)
+    {
+        $query = $this->db->get_where($table, $data);
         return $query->result();
     }
 
     public function code_product()
     {
         $this->db->select_max('no_pj', 'pemcode');
-        $query = $this->db->get('pj_peminjam');
+        $query = $this->db->get('pj_pengembalian');
         $hasil = $query->row();
         return $hasil->pemcode;
     }
 
-    function update_product()
-    {
-        $product_code = $this->input->post('product_code');
-        $product_idmb = $this->input->post('id_mb');
-        $product_namamb = $this->input->post('nama_mb');
-        $product_idbk = $this->input->post('id_bk');
-        $product_namabk = $this->input->post('nama_bk');
-        $product_tglpmj = $this->input->post('tgl_pjm');
-        $product_tglkmb = $this->input->post('tgl_kmb');
-
-        $this->db->set('id_mb', $product_idmb);
-        $this->db->set('nama_mb', $product_namamb);
-        $this->db->set('id_bk', $product_idbk);
-        $this->db->set('nama_bk', $product_namabk);
-        $this->db->set('tgl_pjm', $product_tglpmj);
-        $this->db->set('tgl_kmb', $product_tglkmb);
-        $this->db->where('no_pj', $product_code);
-        $result = $this->db->update('pj_peminjam');
-        return $result;
-    }
+    
 
     function update_status()
     {
         $product_code = $this->input->post('id_bk');
-        $product_sts = "Terpinjam";
+        $product_sts = "Tersedia";
         $this->db->set('status_bk', $product_sts);
         $this->db->where('id_bk', $product_code);
         $result = $this->db->update('pj_barang');
         return $result;
-
     }
 
     function delete_product()
